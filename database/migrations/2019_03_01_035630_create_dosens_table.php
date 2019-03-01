@@ -17,12 +17,16 @@ class CreateDosensTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->string('nidn');
-            $table->primary('user_id');
+            $table->unsignedBigInteger('program_studi_id');
+            $table->foreign('program_studi_id')
+                ->references('id')->on('program_studis')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->timestamps();
+            $table->primary('user_id');
             $table->timestamps();
         });
     }

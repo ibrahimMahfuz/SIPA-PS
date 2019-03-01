@@ -17,6 +17,11 @@ class CreateMahasiswasTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->string('nim');
+            $table->unsignedBigInteger('program_studi_id');
+            $table->foreign('program_studi_id')
+                ->references('id')->on('program_studis')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->primary('user_id');
             $table->foreign('user_id')
                 ->references('id')->on('users')
